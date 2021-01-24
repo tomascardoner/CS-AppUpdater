@@ -1,0 +1,49 @@
+{
+  "commonSource": "{DROPBOX}\\Clientes\\Bomberos Voluntarios de Lobos\\CS-Bomberos\\Release",
+  "commonDestination": null,
+  "executeFileNumber": 0,
+  "shortcut": {
+    "createOnDesktop": true,
+    "displayName": "CS-Bomberos",
+    "iconFileNumber": 0,
+    "iconIndex": 0
+  },
+  "files": [
+    {
+      "name": "CSBomberos.exe",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "EntityFramework.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "EntityFramework.SqlServer.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "Syncfusion.Shared.Base.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "itextsharp.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "BouncyCastle.Crypto.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    }
+  ]
+}
