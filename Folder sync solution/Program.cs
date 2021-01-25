@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace CS_AppUpdater
+namespace CSAppUpdater
 {
     static class Program
     {

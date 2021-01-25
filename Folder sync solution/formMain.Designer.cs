@@ -1,5 +1,5 @@
 ﻿
-namespace CS_AppUpdater
+namespace CSAppUpdater
 {
     partial class formMain
     {
@@ -29,20 +29,20 @@ namespace CS_AppUpdater
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureboxCompanyLogo = new System.Windows.Forms.PictureBox();
             this.textboxStatus = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureboxCompanyLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pictureboxCompanyLogo
             // 
-            this.pictureBox1.Image = global::CS_AppUpdater.Properties.Resources.IsotipoCardonerSistemas;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(90, 97);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureboxCompanyLogo.Image = global::CSAppUpdater.Properties.Resources.IsotipoCardonerSistemas;
+            this.pictureboxCompanyLogo.Location = new System.Drawing.Point(12, 12);
+            this.pictureboxCompanyLogo.Name = "pictureboxCompanyLogo";
+            this.pictureboxCompanyLogo.Size = new System.Drawing.Size(90, 97);
+            this.pictureboxCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureboxCompanyLogo.TabIndex = 0;
+            this.pictureboxCompanyLogo.TabStop = false;
             // 
             // textboxStatus
             // 
@@ -61,7 +61,7 @@ namespace CS_AppUpdater
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(484, 123);
             this.Controls.Add(this.textboxStatus);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureboxCompanyLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -69,7 +69,7 @@ namespace CS_AppUpdater
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Title";
             this.Shown += new System.EventHandler(this.formMain_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureboxCompanyLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -77,7 +77,7 @@ namespace CS_AppUpdater
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureboxCompanyLogo;
         private System.Windows.Forms.TextBox textboxStatus;
     }
 }

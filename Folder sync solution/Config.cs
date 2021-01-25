@@ -10,6 +10,8 @@
 public class ConfigShortcut
 {
     public bool createOnDesktop { get; set; }
+    public bool createOnStartMenu { get; set; }
+    public string startMenuFolder { get; set; }
     public string displayName { get; set; }
     public int iconFileNumber { get; set; }
     public int iconIndex { get; set; }

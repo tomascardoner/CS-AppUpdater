@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
 
-namespace CS_AppUpdater
+namespace CSAppUpdater
 {
     public partial class formMain : Form
     {
@@ -17,6 +18,7 @@ namespace CS_AppUpdater
         {
             InitializeComponent();
 
+            this.Icon = Properties.Resources.IconApplication;
             this.Text = CardonerSistemas.My.Application.Info.Title;
         }
 
@@ -26,9 +28,23 @@ namespace CS_AppUpdater
 
             if (readConfigFile(ref config))
             {
-                if (processFiles(config))
+                string commonSourceFolder = processFolderName(config.commonSource);
+                string commonDestinationFolder = processFolderName(config.commonDestination);
+                string executeFilePath = "";
+
+                if (commonDestinationFolder.Length == 0)
                 {
-                    Application.Exit();
+                    commonDestinationFolder = CardonerSistemas.FileSystem.PathAddBackslash(Application.StartupPath);
+                }
+
+                if (processFiles(config, commonSourceFolder, commonDestinationFolder))
+                {
+                    processShortcut(config);
+
+                    if (executeFile(config, commonDestinationFolder))
+                    {
+                        Application.Exit();
+                    }
                 }
             }
         }
@@ -93,16 +109,8 @@ namespace CS_AppUpdater
 
         #region Files processing
 
-        private bool processFiles(ConfigRootObject config)
+        private bool processFiles(ConfigRootObject config, string commonSourceFolder, string commonDestinationFolder)
         {
-            string commonSourceFolder = processFolderName(config.commonSource);
-            string commonDestinationFolder = processFolderName(config.commonDestination);
-
-            if (commonDestinationFolder.Length == 0)
-            {
-                commonDestinationFolder = CardonerSistemas.FileSystem.PathAddBackslash(Application.StartupPath);
-            }
-
             if (config.files != null)
             {
                 foreach (ConfigFile configFile in config.files)
@@ -119,61 +127,100 @@ namespace CS_AppUpdater
 
         private bool processFile(ConfigFile configFile, string commonSourceFolder, string commonDestinationFolder)
         {
-            string sourceFolder = processFolderName(configFile.source);
-            string destinationFolder = processFolderName(configFile.destination);
+            string sourceFolder = "";
+            string destinationFolder = "";
 
-            if (sourceFolder.Length == 0)
-            {
-                if (commonSourceFolder.Length == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    sourceFolder = commonSourceFolder;
-                }
-            }
-
-            if (destinationFolder.Length == 0)
-            {
-                if (commonDestinationFolder.Length == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    destinationFolder = commonDestinationFolder;
-                }
-            }
+            processSourceFolder(commonSourceFolder, configFile.source, ref sourceFolder);
+            processDestinationFolder(commonDestinationFolder, configFile.destination, ref destinationFolder);
 
             if (configFile.name == null || configFile.name.Trim().Length == 0)
             {
                 return true;
             }
 
-            if (!File.Exists(sourceFolder + configFile.name.Trim()))
+            string fileName = configFile.name.Trim();
+            string sourceFilePath = sourceFolder + fileName;
+            string destinationFilePath = destinationFolder + fileName;
+
+            if (!File.Exists(sourceFilePath))
             {
-                showStatusText($"El archivo de origen ({configFile.name}) no existe.");
+                showStatusText($"El archivo de origen ({fileName}) no existe.");
                 return false;
             }
-            if (!File.Exists(destinationFolder + configFile.name.Trim()))
+            if (!File.Exists(destinationFilePath))
             {
                 // El archivo de destino no existe, así que hay que copiarlo
-                if (!copyFile(sourceFolder, destinationFolder, configFile.name.Trim()))
+                if (!copyFile(sourceFilePath, destinationFilePath, fileName))
                 {
                     return false;
+                }
+            }
+            else
+            {
+                // El archivo de destino ya existe. Verificar si hay que copiarlo
+                if (configFile.updateMethodVersion)
+                {
+                    // Verificar la versión de ambos archivos
+                    FileVersionInfo sourceFileVersion;
+                    FileVersionInfo destinationFileVersion;
+
+                    try
+                    {
+                        sourceFileVersion = FileVersionInfo.GetVersionInfo(sourceFilePath);
+                        destinationFileVersion = FileVersionInfo.GetVersionInfo(destinationFilePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        showStatusText("ERROR", false);
+                        MessageBox.Show($"Ha ocurrido un error al obtener las versiones del archivo ({fileName})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    if (sourceFileVersion.FileVersion != destinationFileVersion.FileVersion)
+                    {
+                        if (!copyFile(sourceFilePath, destinationFilePath, fileName))
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    // Verificar la fecha y el tamaño de ambos archivos
+                    FileInfo sourceFileInfo;
+                    FileInfo destinationFileInfo;
+
+                    try
+                    {
+                        sourceFileInfo = new FileInfo(sourceFilePath);
+                        destinationFileInfo = new FileInfo(destinationFilePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        showStatusText("ERROR", false);
+                        MessageBox.Show($"Ha ocurrido un error al obtener la información del archivo ({fileName})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    if ((sourceFileInfo.LastWriteTime != destinationFileInfo.LastWriteTime) || (sourceFileInfo.Length != destinationFileInfo.Length))
+                    {
+                        if (!copyFile(sourceFilePath, destinationFilePath, fileName))
+                        {
+                            return false;
+                        }
+                    }
                 }
             }
 
             return true;
         }
 
-        private bool copyFile(string sourceFolder, string destinationFolder, string fileName)
+        private bool copyFile(string sourceFilePath, string destinationFilePath, string fileName)
         {
             try
             {
                 showStatusText($"Copiando el archivo ({fileName})...");
-                File.Copy(sourceFolder + fileName, destinationFolder + fileName, true);
+                File.Copy(sourceFilePath, destinationFilePath, true);
                 showStatusText("OK", false);
             }
             catch (Exception ex)
@@ -189,6 +236,32 @@ namespace CS_AppUpdater
         #endregion
 
         #region Folder processing
+
+        private void processSourceFolder(string commonSourceFolder, string fileSourceFolder, ref string sourceFolder)
+        {
+            sourceFolder = processFolderName(fileSourceFolder);
+
+            if (sourceFolder.Length == 0)
+            {
+                if (commonSourceFolder.Length != 0)
+                {
+                    sourceFolder = commonSourceFolder;
+                }
+            }
+        }
+
+        private void processDestinationFolder(string commonDestinationFolder, string fileDestinationFolder, ref string destinationFolder)
+        {
+            destinationFolder = processFolderName(fileDestinationFolder);
+
+            if (destinationFolder.Length == 0)
+            {
+                if (commonDestinationFolder.Length != 0)
+                {
+                    destinationFolder = commonDestinationFolder;
+                }
+            }
+        }
 
         private string processFolderName(string folderName)
         {
@@ -226,9 +299,7 @@ namespace CS_AppUpdater
             applicationDatafolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             if (applicationDatafolder.Length != 0)
             {
-                configFilePath = CardonerSistemas.FileSystem.PathAddBackslash(applicationDatafolder);
-                configFilePath = CardonerSistemas.FileSystem.PathAddBackslash(configFilePath + folderName);
-                configFilePath += configFilename;
+                configFilePath = Path.Combine(applicationDatafolder, folderName, configFilename);
 
                 if (File.Exists(configFilePath))
                 {
@@ -269,7 +340,63 @@ namespace CS_AppUpdater
             return false;
         }
 
-        #endregion 
+        #endregion
+
+        #region Shortcut processing
+
+        private bool processShortcut(ConfigRootObject config)
+        {
+            if (config.shortcut != null)
+            {
+                if (config.shortcut.createOnDesktop != null && config.shortcut.createOnDesktop)
+                {
+                    // Create desktop shortcut
+                    CardonerSistemas.FileSystem.ShortcutAddToDesktop(Application.ExecutablePath, Application.StartupPath, config.shortcut.displayName);
+                }
+                if (config.shortcut.createOnStartMenu != null && config.shortcut.createOnStartMenu)
+                {
+                    // Create start menu shortcut
+                    CardonerSistemas.FileSystem.ShortcutAddToStartMenu(Application.ExecutablePath, Application.StartupPath, config.shortcut.startMenuFolder, config.shortcut.displayName);
+                }
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region Execution of file
+
+        private bool executeFile(ConfigRootObject config, string commonDestinationFolder)
+        {
+            if (config.executeFileNumber != null && config.files != null && config.executeFileNumber <= config.files.Length - 1)
+            {
+                ConfigFile configFile;
+                string destinationFolder = "";
+                string executeFilePath;
+
+                configFile = config.files[config.executeFileNumber];
+
+                processDestinationFolder(commonDestinationFolder, configFile.destination, ref destinationFolder);
+                executeFilePath = destinationFolder + configFile.name;
+
+                try
+                {
+                    System.Diagnostics.Process.Start(executeFilePath);
+                }
+                catch (System.Exception ex)
+                {
+                    showStatusText("ERROR", false);
+                    MessageBox.Show($"Error al iniciar el archivo ({executeFilePath}).\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            }
+
+            return true;
+        }
+
+        #endregion
 
     }
 }

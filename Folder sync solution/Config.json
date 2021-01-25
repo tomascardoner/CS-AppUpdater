@@ -4,6 +4,8 @@
   "executeFileNumber": 0,
   "shortcut": {
     "createOnDesktop": true,
+    "createOnStartMenu": true,
+    "startMenuFolder": "",
     "displayName": "CS-Bomberos",
     "iconFileNumber": 0,
     "iconIndex": 0
@@ -13,7 +15,7 @@
       "name": "CSBomberos.exe",
       "source": null,
       "destination": null,
-      "updateMethodVersion": true
+      "updateMethodVersion": false
     },
     {
       "name": "EntityFramework.dll",
