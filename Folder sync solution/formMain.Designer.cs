@@ -46,12 +46,15 @@ namespace CSAppUpdater
             // 
             // textboxStatus
             // 
+            this.textboxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textboxStatus.Location = new System.Drawing.Point(108, 12);
             this.textboxStatus.MaxLength = 0;
             this.textboxStatus.Multiline = true;
             this.textboxStatus.Name = "textboxStatus";
             this.textboxStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textboxStatus.Size = new System.Drawing.Size(364, 97);
+            this.textboxStatus.Size = new System.Drawing.Size(464, 97);
             this.textboxStatus.TabIndex = 1;
             // 
             // formMain
@@ -59,10 +62,10 @@ namespace CSAppUpdater
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(484, 123);
+            this.ClientSize = new System.Drawing.Size(584, 123);
             this.Controls.Add(this.textboxStatus);
             this.Controls.Add(this.pictureboxCompanyLogo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formMain";

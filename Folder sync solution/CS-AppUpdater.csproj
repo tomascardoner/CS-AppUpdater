@@ -87,7 +87,6 @@
       <Link>Framework\My.cs</Link>
     </Compile>
     <Compile Include="Config.cs" />
-    <Compile Include="DropboxConfigInfo.cs" />
     <Compile Include="formMain.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,11 +1,11 @@
 {
   "commonSource": "{DROPBOX}\\Clientes\\Bomberos Voluntarios de Lobos\\CS-Bomberos\\Release",
-  "commonDestination": null,
+  "commonDestination": "C:\\Datos\\Cardoner Sistemas\\CS-Bomberos",
   "executeFileNumber": 0,
   "shortcut": {
     "createOnDesktop": true,
     "createOnStartMenu": true,
-    "startMenuFolder": "",
+    "startMenuFolder": "Cardoner Sistemas",
     "displayName": "CS-Bomberos",
     "iconFileNumber": 0,
     "iconIndex": 0
@@ -15,6 +15,30 @@
       "name": "CSBomberos.exe",
       "source": null,
       "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "Appearance.config",
+      "source": ".\\Config",
+      "destination": ".\\Config",
+      "updateMethodVersion": false
+    },
+    {
+      "name": "Database.config",
+      "source": ".\\Config",
+      "destination": ".\\Config",
+      "updateMethodVersion": false
+    },
+    {
+      "name": "Email.config",
+      "source": ".\\Config",
+      "destination": ".\\Config",
+      "updateMethodVersion": false
+    },
+    {
+      "name": "General.config",
+      "source": ".\\Config",
+      "destination": ".\\Config",
       "updateMethodVersion": false
     },
     {
