@@ -295,7 +295,7 @@ namespace CSAppUpdater
                 return false;
             }
 
-            if ((sourceFileInfo.LastWriteTime != destinationFileInfo.LastWriteTime) || (sourceFileInfo.Length != destinationFileInfo.Length))
+            if ((sourceFileInfo.LastWriteTime == destinationFileInfo.LastWriteTime) && (sourceFileInfo.Length == destinationFileInfo.Length))
             {
                 showStatusText("IGUALES", false);
                 return false;
