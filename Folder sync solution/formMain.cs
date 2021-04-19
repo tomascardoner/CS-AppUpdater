@@ -13,6 +13,8 @@ namespace CSAppUpdater
 
         private const string defaultConfigFilename = "Config.json";
 
+        private int progressCurrent = 0;
+
         public formMain()
         {
             InitializeComponent();
@@ -37,7 +39,8 @@ namespace CSAppUpdater
             if (readConfigFile(ref config))
             {
                 // Common source folder
-                config.commonSource = CardonerSistemas.FileSystem.ProcessFolderName(config.commonSource);
+                showStatusText("Verificando carpeta de origen...", "");
+                config.commonSource = CardonerSistemas.FileSystem.ProcessFolderName(config.commonSource, true);
                 if (config.commonSource.Length == 0)
                 {
                     config.commonSource = Application.StartupPath;
@@ -48,11 +51,34 @@ namespace CSAppUpdater
                 }
 
                 // Common destination folder
-                config.commonDestination = CardonerSistemas.FileSystem.ProcessFolderName(config.commonDestination);
+                showStatusText("Verificando carpeta de destino...", "");
+                config.commonDestination = CardonerSistemas.FileSystem.ProcessFolderName(config.commonDestination, true);
                 if (config.commonDestination.Length == 0)
                 {
                     config.commonDestination = Application.StartupPath;
                 }
+
+                // Calculate progress bar values
+                // Starts with 1 for reading config file
+                progressbarStatus.Maximum = 1;
+                // adds the numer of files to process
+                if (config.files != null)
+                {
+                    progressbarStatus.Maximum += config.files.Length;
+                }
+                // add 1 more if there is a shortcut
+                if (config.shortcut != null)
+                {
+                    progressbarStatus.Maximum++;
+                }
+
+                // Set the first value to progress bar because the first step (read config) is complete
+                showStatusText("Procesando archivos...", "");
+                progressbarStatus.Value = 1;
+                // This is a workaround for the progress bar to show when occurs in small time
+                progressbarStatus.Value--;
+                progressbarStatus.Value++;
+                Application.DoEvents();
 
                 // Process all files
                 if (!processFiles(config))
@@ -72,13 +98,37 @@ namespace CSAppUpdater
             }
         }
 
-        private void showStatusText(string newText, bool addNewLine = true)
+        private void showStatusText(string statusText, string logText, bool addNewLine = true, bool isError = false)
         {
+            // Status text
+            if (!string.IsNullOrEmpty(statusText))
+            {
+                labelStatus.Text = statusText;
+            }
+
+            // Log text
             if (addNewLine)
             {
-                textboxStatus.AppendText(Environment.NewLine);
+                textboxLog.AppendText(Environment.NewLine);
             }
-            textboxStatus.AppendText(newText);
+            if (string.IsNullOrEmpty(logText))
+            {
+                textboxLog.AppendText(statusText);
+            }
+            else
+            {
+                textboxLog.AppendText(logText);
+            }
+
+            // Error
+            if (isError)
+            {
+                progressbarStatus.Visible = false;
+                labelStatus.Visible = false;
+                textboxLog.Visible = true;
+            }
+
+            // Common
             Application.DoEvents();
         }
 
@@ -104,25 +154,25 @@ namespace CSAppUpdater
 
             try
             {
-                showStatusText("Leyendo archivo de configuración...", false);
+                showStatusText("Leyendo archivo de configuración...", "", false);
                 jsonConfigFileString = File.ReadAllText(configFilename);
-                showStatusText("OK", false);
+                showStatusText("", "OK", false);
             }
             catch (Exception ex)
             {
-                showStatusText("ERROR", false);
+                showStatusText("", "ERROR", false, true);
                 MessageBox.Show($"Ha ocurrido un error al leer el archivo de configuración ({configFilename})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             try
             {
-                showStatusText("Interpretando archivo de configuración...");
+                showStatusText("Interpretando archivo de configuración...", "");
                 config = JsonSerializer.Deserialize<ConfigRootObject>(jsonConfigFileString);
-                showStatusText("OK", false);
+                showStatusText("", "OK", false);
             }
             catch (Exception ex)
             {
-                showStatusText("ERROR", false);
+                showStatusText("", "ERROR", false, true);
                 MessageBox.Show($"Ha ocurrido un error al interpretar el archivo de configuración ({configFilename})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -144,6 +194,11 @@ namespace CSAppUpdater
                     {
                         return false;
                     }
+                    progressbarStatus.Value++;
+                    // This is a workaround for the progress bar to show when occurs in small time
+                    progressbarStatus.Value--;
+                    progressbarStatus.Value++;
+                    Application.DoEvents();
                 }
             }
 
@@ -166,12 +221,12 @@ namespace CSAppUpdater
             string sourceFilePath = Path.Combine(configFile.source, fileName);
             string destinationFilePath = Path.Combine(configFile.destination, fileName);
 
-            if (!verifyFileExists(sourceFilePath, fileName, "origen"))
+            if (!verifyFileExists(sourceFilePath, fileName, "origen", true))
             {
                 return false;
             }
 
-            if (!verifyFileExists(destinationFilePath, fileName, "destino"))
+            if (!verifyFileExists(destinationFilePath, fileName, "destino", false))
             {
                 // El archivo de destino no existe, así que hay que copiarlo
                 // pero primero hay que chequear que exista la carpeta de destino
@@ -205,25 +260,25 @@ namespace CSAppUpdater
             return copyFile(sourceFilePath, destinationFilePath, fileName);
         }
 
-        private bool verifyFileExists(string filePath, string fileName, string leyenda)
+        private bool verifyFileExists(string filePath, string fileName, string leyenda, bool isError)
         {
             try
             {
-                showStatusText($"Verificando si existe el archivo de {leyenda} ({fileName})...");
+                showStatusText($"Verificando si existe el archivo de {leyenda} ({fileName})...", "");
                 if (File.Exists(filePath))
                 {
-                    showStatusText("OK", false);
+                    showStatusText("", "OK", false);
                     return true;
                 }
                 else
                 {
-                    showStatusText("NO EXISTE", false);
+                    showStatusText("", "NO EXISTE", false, isError);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                showStatusText("ERROR", false);
+                showStatusText("", "ERROR", false, true);
                 MessageBox.Show($"Ha ocurrido un error al verificar si existe el archivo de {leyenda} ({fileName})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -241,7 +296,7 @@ namespace CSAppUpdater
             }
             catch (Exception ex)
             {
-                showStatusText("Verificando y creando carpeta de destino...ERROR");
+                showStatusText("", "Verificando y creando carpeta de destino...ERROR", true, true);
                 MessageBox.Show($"Ha ocurrido un error al verificar y crear la carpeta de destino ({folder})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -254,25 +309,25 @@ namespace CSAppUpdater
 
             try
             {
-                showStatusText($"Verificando versiones de ambos archivos ({fileName})...");
+                showStatusText($"Verificando versiones de ambos archivos ({fileName})...", "");
                 sourceFileVersion = FileVersionInfo.GetVersionInfo(sourceFilePath);
                 destinationFileVersion = FileVersionInfo.GetVersionInfo(destinationFilePath);
             }
             catch (Exception ex)
             {
-                showStatusText("ERROR", false);
+                showStatusText("", "ERROR", false, true);
                 MessageBox.Show($"Ha ocurrido un error al obtener la versión de los archivos ({fileName})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (sourceFileVersion.FileVersion == destinationFileVersion.FileVersion)
             {
-                showStatusText("IGUALES", false);
+                showStatusText("", "IGUALES", false);
                 return false;
             }
             else
             {
-                showStatusText("DISTINTAS", false);
+                showStatusText("", "DISTINTAS", false);
                 return true;
             }
         }
@@ -284,25 +339,25 @@ namespace CSAppUpdater
 
             try
             {
-                showStatusText($"Verificando información de ambos archivos ({fileName})...");
+                showStatusText($"Verificando información de ambos archivos ({fileName})...", "");
                 sourceFileInfo = new FileInfo(sourceFilePath);
                 destinationFileInfo = new FileInfo(destinationFilePath);
             }
             catch (Exception ex)
             {
-                showStatusText("ERROR", false);
+                showStatusText("", "ERROR", false, true);
                 MessageBox.Show($"Ha ocurrido un error al obtener la información de los archivos ({fileName})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if ((sourceFileInfo.LastWriteTime == destinationFileInfo.LastWriteTime) && (sourceFileInfo.Length == destinationFileInfo.Length))
             {
-                showStatusText("IGUALES", false);
+                showStatusText("", "IGUALES", false);
                 return false;
             }
             else
             {
-                showStatusText("DISTINTOS", false);
+                showStatusText("", "DISTINTOS", false);
                 return true;
             }
         }
@@ -311,13 +366,13 @@ namespace CSAppUpdater
         {
             try
             {
-                showStatusText($"Copiando el archivo ({fileName})...");
+                showStatusText($"Copiando el archivo ({fileName})...", "");
                 File.Copy(sourceFilePath, destinationFilePath, true);
-                showStatusText("OK", false);
+                showStatusText("", "OK", false);
             }
             catch (Exception ex)
             {
-                showStatusText("ERROR", false);
+                showStatusText("", "ERROR", false, true);
                 MessageBox.Show($"Ha ocurrido un error al copiar el archivo ({fileName})\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -333,7 +388,7 @@ namespace CSAppUpdater
         {
             string fileFolderTemp;
 
-            fileFolderTemp = CardonerSistemas.FileSystem.ProcessFolderName(fileFolder);
+            fileFolderTemp = CardonerSistemas.FileSystem.ProcessFolderName(fileFolder, true);
 
             if (fileFolderTemp.Length == 0)
             {
@@ -384,6 +439,12 @@ namespace CSAppUpdater
                 }
             }
 
+            progressbarStatus.Value++;
+            // This is a workaround for the progress bar to show when occurs in small time
+            progressbarStatus.Value--;
+            progressbarStatus.Value++;
+            Application.DoEvents();
+
             return true;
         }
 
@@ -407,7 +468,7 @@ namespace CSAppUpdater
                 }
                 catch (System.Exception ex)
                 {
-                    showStatusText("ERROR", false);
+                    showStatusText("", "ERROR", false, true);
                     MessageBox.Show($"Error al iniciar el archivo ({executeFilePath}).\n\nError: {ex.Message}", CardonerSistemas.My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }

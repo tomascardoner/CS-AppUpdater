@@ -1,6 +1,6 @@
 {
   "commonSource": "{DROPBOX}\\Clientes\\Bomberos Voluntarios de Lobos\\CS-Bomberos\\Release",
-  "commonDestination": "C:\\Datos\\Cardoner Sistemas\\CS-Bomberos",
+  "commonDestination": "C:\\Temp\\CS-Bomberos",
   "executeFileNumber": 0,
   "shortcut": {
     "createOnDesktop": true,
@@ -18,25 +18,31 @@
       "updateMethodVersion": true
     },
     {
-      "name": "Appearance.config",
+      "name": "CSBomberos.exe.config",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": false
+    },
+    {
+      "name": "Appearance.json",
       "source": ".\\Config",
       "destination": ".\\Config",
       "updateMethodVersion": false
     },
     {
-      "name": "Database.config",
+      "name": "Database.json",
       "source": ".\\Config",
       "destination": ".\\Config",
       "updateMethodVersion": false
     },
     {
-      "name": "Email.config",
+      "name": "Email.json",
       "source": ".\\Config",
       "destination": ".\\Config",
       "updateMethodVersion": false
     },
     {
-      "name": "General.config",
+      "name": "General.json",
       "source": ".\\Config",
       "destination": ".\\Config",
       "updateMethodVersion": false
@@ -67,6 +73,42 @@
     },
     {
       "name": "BouncyCastle.Crypto.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "System.Buffers.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "System.Memory.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "System.Numerics.Vectors.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "System.Runtime.CompilerServices.Unsafe.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "System.Text.Encodings.Web.dll",
+      "source": null,
+      "destination": null,
+      "updateMethodVersion": true
+    },
+    {
+      "name": "System.Text.Json.dll",
       "source": null,
       "destination": null,
       "updateMethodVersion": true
