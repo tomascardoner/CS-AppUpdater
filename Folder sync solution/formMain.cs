@@ -126,6 +126,8 @@ namespace CSAppUpdater
                 progressbarStatus.Visible = false;
                 labelStatus.Visible = false;
                 textboxLog.Visible = true;
+                textboxLog.SelectionStart = textboxLog.Text.Length;
+                textboxLog.ScrollToCaret();
             }
 
             // Common
