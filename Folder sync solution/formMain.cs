@@ -431,13 +431,13 @@ namespace CSAppUpdater
                 // Create desktop shortcut
                 if (config.shortcut.createOnDesktop != null && config.shortcut.createOnDesktop)
                 {
-                    CardonerSistemas.FileSystem.ShortcutAddToDesktop(Application.ExecutablePath, Application.StartupPath, config.shortcut.displayName, iconFilePath);
+                    CardonerSistemas.Shortcut.AddToDesktop(Application.ExecutablePath, Application.StartupPath, config.shortcut.displayName, iconFilePath);
                 }
 
                 // Create start menu shortcut
                 if (config.shortcut.createOnStartMenu != null && config.shortcut.createOnStartMenu)
                 {
-                    CardonerSistemas.FileSystem.ShortcutAddToStartMenu(Application.ExecutablePath, Application.StartupPath, config.shortcut.startMenuFolder, config.shortcut.displayName, iconFilePath);
+                    CardonerSistemas.Shortcut.AddToStartMenu(Application.ExecutablePath, Application.StartupPath, config.shortcut.startMenuFolder, config.shortcut.displayName, iconFilePath);
                 }
             }
 

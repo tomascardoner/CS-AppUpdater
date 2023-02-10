@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Cardoner Sistemas")]
 [assembly: AssemblyProduct("CS-AppUpdater")]
-[assembly: AssemblyCopyright("Copyright © 2021 Cardoner Sistemas")]
+[assembly: AssemblyCopyright("Copyright © 2021-2023 Cardoner Sistemas")]
 [assembly: AssemblyTrademark("® CS-AppUpdater")]
 [assembly: AssemblyCulture("")]
 
