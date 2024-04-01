@@ -75,13 +75,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\framework-csharp\FileSystem.cs">
+    <Compile Include="..\..\..\framework-csharp\FileSystem.cs">
       <Link>Framework\FileSystem.cs</Link>
     </Compile>
-    <Compile Include="..\..\framework-csharp\My.cs">
+    <Compile Include="..\..\..\framework-csharp\My.cs">
       <Link>Framework\My.cs</Link>
     </Compile>
-    <Compile Include="..\..\framework-csharp\Shortcut.cs">
+    <Compile Include="..\..\..\framework-csharp\Shortcut.cs">
       <Link>Framework\Shortcut.cs</Link>
     </Compile>
     <Compile Include="Config.cs" />
