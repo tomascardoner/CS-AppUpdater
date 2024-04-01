@@ -1,117 +1,219 @@
-{
-  "commonSource": "{DROPBOX}\\Clientes\\Bomberos Voluntarios de Lobos\\CS-Bomberos\\Release",
-  "commonDestination": "C:\\Temp\\CS-Bomberos",
-  "executeFileNumber": 0,
-  "shortcut": {
-    "createOnDesktop": true,
-    "createOnStartMenu": true,
-    "startMenuFolder": "Cardoner Sistemas",
-    "displayName": "CS-Bomberos",
-    "iconFileNumber": 0,
-    "iconIndex": 0
+﻿{
+  "CommonSource": "{DROPBOX}\\Clientes\\Sociedad Rural de Lobos\\CS-Maps\\Release",
+  "CommonDestination": "C:\\Temp\\CS-Maps",
+  "ExecuteFileNumber": 0,
+  "Shortcut": {
+    "CreateOnDesktop": true,
+    "CreateOnStartMenu": true,
+    "StartMenuFolder": "Cardoner Sistemas",
+    "DisplayName": "CS-Maps",
+    "IconFileNumber": 0,
+    "IconIndex": 0
   },
-  "files": [
+  "Files": [
     {
-      "name": "CSBomberos.exe",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "CSMaps.exe",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "CSBomberos.exe.config",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": false
+      "Name": "CSMaps.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "Appearance.json",
-      "source": ".\\Config",
-      "destination": ".\\Config",
-      "updateMethodVersion": false
+      "Name": "CSMaps.dll.config",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": false
     },
     {
-      "name": "Database.json",
-      "source": ".\\Config",
-      "destination": ".\\Config",
-      "updateMethodVersion": false
+      "Name": "CSMaps.runtimeconfig.json",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": false
     },
     {
-      "name": "Email.json",
-      "source": ".\\Config",
-      "destination": ".\\Config",
-      "updateMethodVersion": false
+      "Name": "CSMaps.deps.json",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": false
     },
     {
-      "name": "General.json",
-      "source": ".\\Config",
-      "destination": ".\\Config",
-      "updateMethodVersion": false
+      "Name": "Appearance.json",
+      "Source": ".\\config",
+      "Destination": ".\\config",
+      "UpdateMethodVersion": false
     },
     {
-      "name": "EntityFramework.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "Database.json",
+      "Source": ".\\config",
+      "Destination": ".\\config",
+      "UpdateMethodVersion": false
     },
     {
-      "name": "EntityFramework.SqlServer.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "General.json",
+      "Source": ".\\config",
+      "Destination": ".\\config",
+      "UpdateMethodVersion": false
     },
     {
-      "name": "Syncfusion.Shared.Base.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "CardonerSistemas.Framework.Base.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "itextsharp.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "CardonerSistemas.Framework.Controls.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "BouncyCastle.Crypto.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "CardonerSistemas.Framework.Controls.Syncfusion.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "System.Buffers.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "CardonerSistemas.Framework.Cryptography.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "System.Memory.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "CardonerSistemas.Framework.Database.EFCore.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "System.Numerics.Vectors.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "Geo.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "System.Runtime.CompilerServices.Unsafe.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "Microsoft.EntityFrameworkCore.Abstractions.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "System.Text.Encodings.Web.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "Microsoft.EntityFrameworkCore.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
     },
     {
-      "name": "System.Text.Json.dll",
-      "source": null,
-      "destination": null,
-      "updateMethodVersion": true
+      "Name": "Microsoft.EntityFrameworkCore.Relational.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.EntityFrameworkCore.SqlServer.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.Caching.Abstractions.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.Caching.Memory.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.Configuration.Abstractions.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.DependencyInjection.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.Logging.Abstractions.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.Logging.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.Options.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Extensions.Primitives.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Identity.Client.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.SqlServer.Server.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "SharpKml.Core.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Syncfusion.Licensing.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Syncfusion.Shared.Base.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Data.SqlClient.dll",
+      "Source": ".\\runtimes\\win\\lib\\net6.0",
+      "Destination": ".\\runtimes\\win\\lib\\net6.0",
+      "UpdateMethodVersion": true
+    },
+    {
+      "Name": "Microsoft.Data.SqlClient.SNI.dll",
+      "Source": ".\\runtimes\\win-x64\\native",
+      "Destination": ".\\runtimes\\win-x64\\native",
+      "UpdateMethodVersion": true
     }
   ]
 }
