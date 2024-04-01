@@ -91,7 +91,7 @@ namespace CSAppUpdater
             this.Name = "formMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Title";
-            this.Shown += new System.EventHandler(this.formMain_Shown);
+            this.Shown += new System.EventHandler(this.Me_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureboxCompanyLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

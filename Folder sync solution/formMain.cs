@@ -13,8 +13,6 @@ namespace CSAppUpdater
 
         private const string defaultConfigFilename = "Config.json";
 
-        private int progressCurrent = 0;
-
         public formMain()
         {
             InitializeComponent();
@@ -23,16 +21,16 @@ namespace CSAppUpdater
             this.Text = CardonerSistemas.My.Application.Info.Title;
         }
 
-        private void formMain_Shown(object sender, EventArgs e)
+        private void Me_Shown(object sender, EventArgs e)
         {
-            startTheProcess();
+            StartTheProcess();
         }
 
         #endregion
 
         #region The process
 
-        private void startTheProcess()
+        private void StartTheProcess()
         {
             ConfigRootObject config = null;
 
@@ -40,34 +38,34 @@ namespace CSAppUpdater
             {
                 // Common source folder
                 showStatusText("Verificando carpeta de origen...", "");
-                config.commonSource = CardonerSistemas.FileSystem.ProcessFolderName(config.commonSource, true);
-                if (config.commonSource.Length == 0)
+                config.CommonSource = CardonerSistemas.FileSystem.ProcessFolderName(config.CommonSource, true);
+                if (config.CommonSource.Length == 0)
                 {
-                    config.commonSource = Application.StartupPath;
+                    config.CommonSource = Application.StartupPath;
                 }
-                else if (config.commonSource.StartsWith("."))
+                else if (config.CommonSource.StartsWith("."))
                 {
-                    config.commonSource = Path.Combine(Application.StartupPath, config.commonSource);
+                    config.CommonSource = Path.Combine(Application.StartupPath, config.CommonSource);
                 }
 
                 // Common destination folder
                 showStatusText("Verificando carpeta de destino...", "");
-                config.commonDestination = CardonerSistemas.FileSystem.ProcessFolderName(config.commonDestination, true);
-                if (config.commonDestination.Length == 0)
+                config.CommonDestination = CardonerSistemas.FileSystem.ProcessFolderName(config.CommonDestination, true);
+                if (config.CommonDestination.Length == 0)
                 {
-                    config.commonDestination = Application.StartupPath;
+                    config.CommonDestination = Application.StartupPath;
                 }
 
                 // Calculate progress bar values
                 // Starts with 1 for reading config file
                 progressbarStatus.Maximum = 1;
                 // adds the numer of files to process
-                if (config.files != null)
+                if (config.Files != null)
                 {
-                    progressbarStatus.Maximum += config.files.Length;
+                    progressbarStatus.Maximum += config.Files.Length;
                 }
                 // add 1 more if there is a shortcut
-                if (config.shortcut != null)
+                if (config.Shortcut != null)
                 {
                     progressbarStatus.Maximum++;
                 }
@@ -81,13 +79,13 @@ namespace CSAppUpdater
                 Application.DoEvents();
 
                 // Process all files
-                if (!processFiles(config))
+                if (!ProcessFiles(config))
                 {
                     return;
                 }
 
                 // Verify and create shortcuts if necessary
-                processShortcut(config);
+                ProcessShortcut(config);
 
                 // Finally, execute corresponding file
                 if (executeFile(config))
@@ -186,13 +184,13 @@ namespace CSAppUpdater
 
         #region Files processing
 
-        private bool processFiles(ConfigRootObject config)
+        private bool ProcessFiles(ConfigRootObject config)
         {
-            if (config.files != null)
+            if (config.Files != null)
             {
-                foreach (ConfigFile configFile in config.files)
+                foreach (ConfigFile configFile in config.Files)
                 {
-                    if (!processFile(configFile, config.commonSource, config.commonDestination))
+                    if (!processFile(configFile, config.CommonSource, config.CommonDestination))
                     {
                         return false;
                     }
@@ -209,19 +207,19 @@ namespace CSAppUpdater
 
         private bool processFile(ConfigFile configFile, string commonSourceFolder, string commonDestinationFolder)
         {
-            if (configFile.name == null || configFile.name.Trim().Length == 0)
+            if (configFile.Name == null || configFile.Name.Trim().Length == 0)
             {
                 return true;
             }
 
             // Proceso las carpetas de origen y destino del archivo
-            configFile.source = processFileFolder(commonSourceFolder, configFile.source);
-            configFile.destination = processFileFolder(commonDestinationFolder, configFile.destination);
+            configFile.Source = processFileFolder(commonSourceFolder, configFile.Source);
+            configFile.Destination = processFileFolder(commonDestinationFolder, configFile.Destination);
 
             // Preparo el nombre del archivo y los paths completos de origen y destino
-            string fileName = configFile.name.Trim();
-            string sourceFilePath = Path.Combine(configFile.source, fileName);
-            string destinationFilePath = Path.Combine(configFile.destination, fileName);
+            string fileName = configFile.Name.Trim();
+            string sourceFilePath = Path.Combine(configFile.Source, fileName);
+            string destinationFilePath = Path.Combine(configFile.Destination, fileName);
 
             if (!verifyFileExists(sourceFilePath, fileName, "origen", true))
             {
@@ -232,7 +230,7 @@ namespace CSAppUpdater
             {
                 // El archivo de destino no existe, así que hay que copiarlo
                 // pero primero hay que chequear que exista la carpeta de destino
-                if (!verifyFolderExistsAndCreate(configFile.destination))
+                if (!verifyFolderExistsAndCreate(configFile.Destination))
                 {
                     return false;
                 }
@@ -240,7 +238,7 @@ namespace CSAppUpdater
             else
             {
                 // El archivo de destino ya existe. Verificar si hay que copiarlo
-                if (configFile.updateMethodVersion)
+                if (configFile.UpdateMethodVersion)
                 {
                     // Verificar la versión de ambos archivos
                     if (!verifyIfFileVersionsDiffers(sourceFilePath, destinationFilePath, fileName))
@@ -399,12 +397,9 @@ namespace CSAppUpdater
                     fileFolderTemp = commonFolder;
                 }
             }
-            else if (fileFolderTemp.StartsWith("."))
+            else if (fileFolderTemp.StartsWith(".") && commonFolder.Length != 0)
             {
-                if (commonFolder.Length != 0)
-                {
-                    fileFolderTemp = Path.Combine(commonFolder, fileFolderTemp);
-                }
+                fileFolderTemp = Path.Combine(commonFolder, fileFolderTemp);
             }
 
             return fileFolderTemp;
@@ -414,30 +409,30 @@ namespace CSAppUpdater
 
         #region Shortcut processing
 
-        private bool processShortcut(ConfigRootObject config)
+        private void ProcessShortcut(ConfigRootObject config)
         {
-            if (config.shortcut != null)
+            if (config.Shortcut != null)
             {
                 string iconFilePath = null;
 
-                if (config.shortcut.iconFileNumber != null && config.files != null && config.shortcut.iconFileNumber <= config.files.Length - 1)
+                if (config.Shortcut.IconFileNumber != null && config.Files != null && config.Shortcut.IconFileNumber <= config.Files.Length - 1)
                 {
                     ConfigFile configFile;
 
-                    configFile = config.files[config.shortcut.iconFileNumber];
-                    iconFilePath = Path.Combine(configFile.destination, configFile.name);
+                    configFile = config.Files[config.Shortcut.IconFileNumber];
+                    iconFilePath = Path.Combine(configFile.Destination, configFile.Name);
                 }
 
                 // Create desktop shortcut
-                if (config.shortcut.createOnDesktop != null && config.shortcut.createOnDesktop)
+                if (config.Shortcut.CreateOnDesktop != null && config.Shortcut.CreateOnDesktop)
                 {
-                    CardonerSistemas.Shortcut.AddToDesktop(Application.ExecutablePath, Application.StartupPath, config.shortcut.displayName, iconFilePath);
+                    CardonerSistemas.Shortcut.AddToDesktop(Application.ExecutablePath, Application.StartupPath, config.Shortcut.DisplayName, iconFilePath);
                 }
 
                 // Create start menu shortcut
-                if (config.shortcut.createOnStartMenu != null && config.shortcut.createOnStartMenu)
+                if (config.Shortcut.CreateOnStartMenu != null && config.Shortcut.CreateOnStartMenu)
                 {
-                    CardonerSistemas.Shortcut.AddToStartMenu(Application.ExecutablePath, Application.StartupPath, config.shortcut.startMenuFolder, config.shortcut.displayName, iconFilePath);
+                    CardonerSistemas.Shortcut.AddToStartMenu(Application.ExecutablePath, Application.StartupPath, config.Shortcut.StartMenuFolder, config.Shortcut.DisplayName, iconFilePath);
                 }
             }
 
@@ -446,8 +441,6 @@ namespace CSAppUpdater
             progressbarStatus.Value--;
             progressbarStatus.Value++;
             Application.DoEvents();
-
-            return true;
         }
 
         #endregion
@@ -456,13 +449,13 @@ namespace CSAppUpdater
 
         private bool executeFile(ConfigRootObject config)
         {
-            if (config.executeFileNumber != null && config.files != null && config.executeFileNumber <= config.files.Length - 1)
+            if (config.ExecuteFileNumber != null && config.Files != null && config.ExecuteFileNumber <= config.Files.Length - 1)
             {
                 ConfigFile configFile;
                 string executeFilePath;
 
-                configFile = config.files[config.executeFileNumber];
-                executeFilePath = Path.Combine(configFile.destination, configFile.name);
+                configFile = config.Files[config.ExecuteFileNumber];
+                executeFilePath = Path.Combine(configFile.Destination, configFile.Name);
 
                 try
                 {
