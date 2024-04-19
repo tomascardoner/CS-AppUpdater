@@ -11,12 +11,15 @@
     <StartupObject>CSAppUpdater.Program</StartupObject>
     <ApplicationIcon>Resources\IconApplication.ico</ApplicationIcon>
     <NeutralLanguage>es-AR</NeutralLanguage>
-    <Title>CS-AppUpdater</Title>
-    <Authors>Tomás A. Cardoner</Authors>
+    <AssemblyTitle>CS-AppUpdater</AssemblyTitle>
     <Company>Cardoner Sistemas</Company>
     <Product>CS-AppUpdater</Product>
     <Description>Application file updater from a folder.</Description>
-    <Copyright>Copyright © 2021-2024 Cardoner Sistemas</Copyright>
+    <Copyright>© 2024 Cardoner Sistemas. All rights reserved.</Copyright>
+    <Trademark>® CS-AppUpdater</Trademark>
+    <Build>$([System.DateTime]::op_Subtraction($([System.DateTime]::get_Now().get_Date()),$([System.DateTime]::new(2000,1,1))).get_TotalDays())</Build>
+    <Revision>$([MSBuild]::Divide($([System.DateTime]::get_Now().get_TimeOfDay().get_TotalSeconds()), 2).ToString('F0'))</Revision>
+    <Version>1.0.$(Build).$(Revision)</Version>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
