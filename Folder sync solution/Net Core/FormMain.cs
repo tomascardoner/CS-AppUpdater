@@ -242,6 +242,10 @@ namespace CSAppUpdater
             else
             {
                 // El archivo de destino ya existe. Verificar si hay que copiarlo
+                if (!configFile.Overwrite)
+                {
+                    return true;
+                }
                 if (configFile.UpdateMethodVersion)
                 {
                     // Verificar la versión de ambos archivos

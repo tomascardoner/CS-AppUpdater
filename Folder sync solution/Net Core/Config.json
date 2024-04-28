@@ -15,205 +15,239 @@
       "Name": "CSMaps.exe",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "CSMaps.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "CSMaps.dll.config",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": false
+      "UpdateMethodVersion": false,
+      "Overwrite": true
     },
     {
       "Name": "CSMaps.runtimeconfig.json",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": false
+      "UpdateMethodVersion": false,
+      "Overwrite": true
     },
     {
       "Name": "CSMaps.deps.json",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": false
+      "UpdateMethodVersion": false,
+      "Overwrite": true
     },
     {
       "Name": "Appearance.json",
       "Source": ".\\config",
       "Destination": ".\\config",
-      "UpdateMethodVersion": false
+      "UpdateMethodVersion": false,
+      "Overwrite": true
     },
     {
       "Name": "Database.json",
       "Source": ".\\config",
       "Destination": ".\\config",
-      "UpdateMethodVersion": false
+      "UpdateMethodVersion": false,
+      "Overwrite": false
     },
     {
       "Name": "General.json",
       "Source": ".\\config",
       "Destination": ".\\config",
-      "UpdateMethodVersion": false
+      "UpdateMethodVersion": false,
+      "Overwrite": false
     },
     {
       "Name": "CardonerSistemas.Framework.Base.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "CardonerSistemas.Framework.Controls.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "CardonerSistemas.Framework.Controls.Syncfusion.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "CardonerSistemas.Framework.Cryptography.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "CardonerSistemas.Framework.Database.EFCore.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Geo.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.EntityFrameworkCore.Abstractions.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.EntityFrameworkCore.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.EntityFrameworkCore.Relational.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.EntityFrameworkCore.SqlServer.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.Caching.Abstractions.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.Caching.Memory.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.Configuration.Abstractions.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.DependencyInjection.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.Logging.Abstractions.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.Logging.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.Options.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Extensions.Primitives.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Identity.Client.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.SqlServer.Server.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "SharpKml.Core.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Syncfusion.Licensing.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Syncfusion.Shared.Base.dll",
       "Source": null,
       "Destination": null,
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Data.SqlClient.dll",
       "Source": ".\\runtimes\\win\\lib\\net6.0",
       "Destination": ".\\runtimes\\win\\lib\\net6.0",
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     },
     {
       "Name": "Microsoft.Data.SqlClient.SNI.dll",
       "Source": ".\\runtimes\\win-x64\\native",
       "Destination": ".\\runtimes\\win-x64\\native",
-      "UpdateMethodVersion": true
+      "UpdateMethodVersion": true,
+      "Overwrite": true
     }
   ]
 }

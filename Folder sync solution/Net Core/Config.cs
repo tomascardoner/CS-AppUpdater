@@ -25,5 +25,6 @@
         public string Source { get; set; }
         public string Destination { get; set; }
         public bool UpdateMethodVersion { get; set; }
+        public bool Overwrite { get; set; }
     }
 }
