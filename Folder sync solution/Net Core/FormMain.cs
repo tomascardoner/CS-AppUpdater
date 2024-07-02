@@ -57,12 +57,12 @@ namespace CSAppUpdater
                 // Starts with 1 for reading config file
                 ProgressBarStatus.Maximum = 1;
                 // adds the numer of files to process
-                if (config.Files != null)
+                if (config.Files is not null)
                 {
                     ProgressBarStatus.Maximum += config.Files.Length;
                 }
                 // add 1 more if there is a shortcut
-                if (config.Shortcut != null)
+                if (config.Shortcut is not null)
                 {
                     ProgressBarStatus.Maximum++;
                 }
@@ -190,7 +190,7 @@ namespace CSAppUpdater
 
         private bool ProcessFiles(ConfigRootObject config)
         {
-            if (config.Files != null)
+            if (config.Files is not null)
             {
                 foreach (ConfigFile configFile in config.Files)
                 {
@@ -419,11 +419,11 @@ namespace CSAppUpdater
 
         private void ProcessShortcut(ConfigRootObject config)
         {
-            if (config.Shortcut != null)
+            if (config.Shortcut is not null)
             {
                 string iconFilePath = null;
 
-                if (config.Files != null && config.Shortcut.IconFileNumber <= config.Files.Length - 1)
+                if (config.Files is not null && config.Shortcut.IconFileNumber <= config.Files.Length - 1)
                 {
                     ConfigFile configFile;
 
@@ -457,7 +457,7 @@ namespace CSAppUpdater
 
         private bool ExecuteFile(ConfigRootObject config)
         {
-            if (config.Files != null && config.ExecuteFileNumber <= config.Files.Length - 1)
+            if (config.Files is not null && config.ExecuteFileNumber <= config.Files.Length - 1)
             {
                 ConfigFile configFile;
                 string executeFilePath;

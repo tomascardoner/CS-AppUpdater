@@ -1,71 +1,50 @@
-﻿{
-  "CommonSource": "{DROPBOX}\\Clientes\\Sociedad Rural de Lobos\\CS-Maps\\Release",
-  "CommonDestination": "C:\\Temp\\CS-Maps",
+{
+  "CommonSource": "{Dropbox}\\Cholila Agroindustrial SRL\\CS-Agroindustria\\Release",
+  "CommonDestination": "C:\\Temp\\Cardoner Sistemas\\CS-Agroindustria\\Execute",
   "ExecuteFileNumber": 0,
   "Shortcut": {
     "CreateOnDesktop": true,
     "CreateOnStartMenu": true,
     "StartMenuFolder": "Cardoner Sistemas",
-    "DisplayName": "CS-Maps",
+    "DisplayName": "CS-Agroindustria",
     "IconFileNumber": 0,
     "IconIndex": 0
   },
   "Files": [
     {
-      "Name": "CSMaps.exe",
+      "Name": "CSAgroindustria.exe",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
       "Overwrite": true
     },
     {
-      "Name": "CSMaps.dll",
+      "Name": "CSAgroindustria.dll",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
       "Overwrite": true
     },
     {
-      "Name": "CSMaps.dll.config",
+      "Name": "CSAgroindustria.deps.json",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": false,
       "Overwrite": true
     },
     {
-      "Name": "CSMaps.runtimeconfig.json",
+      "Name": "CSAgroindustria.dll.config",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": false,
       "Overwrite": true
     },
     {
-      "Name": "CSMaps.deps.json",
+      "Name": "CSAgroindustria.runtimeconfig.json",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": false,
       "Overwrite": true
-    },
-    {
-      "Name": "Appearance.json",
-      "Source": ".\\config",
-      "Destination": ".\\config",
-      "UpdateMethodVersion": false,
-      "Overwrite": true
-    },
-    {
-      "Name": "Database.json",
-      "Source": ".\\config",
-      "Destination": ".\\config",
-      "UpdateMethodVersion": false,
-      "Overwrite": false
-    },
-    {
-      "Name": "General.json",
-      "Source": ".\\config",
-      "Destination": ".\\config",
-      "UpdateMethodVersion": false,
-      "Overwrite": false
     },
     {
       "Name": "CardonerSistemas.Framework.Base.dll",
@@ -96,6 +75,13 @@
       "Overwrite": true
     },
     {
+      "Name": "CardonerSistemas.Framework.Database.AdoNet.SqlServer.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true,
+      "Overwrite": true
+    },
+    {
       "Name": "CardonerSistemas.Framework.Database.EFCore.dll",
       "Source": null,
       "Destination": null,
@@ -103,14 +89,14 @@
       "Overwrite": true
     },
     {
-      "Name": "Geo.dll",
+      "Name": "HtmlAgilityPack.dll",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
       "Overwrite": true
     },
     {
-      "Name": "Microsoft.EntityFrameworkCore.Abstractions.dll",
+      "Name": "Microsoft.Data.SqlClient.dll",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
@@ -118,6 +104,13 @@
     },
     {
       "Name": "Microsoft.EntityFrameworkCore.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true,
+      "Overwrite": true
+    },
+    {
+      "Name": "Microsoft.EntityFrameworkCore.Abstractions.dll",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
@@ -159,13 +152,6 @@
       "Overwrite": true
     },
     {
-      "Name": "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
-      "Source": null,
-      "Destination": null,
-      "UpdateMethodVersion": true,
-      "Overwrite": true
-    },
-    {
       "Name": "Microsoft.Extensions.DependencyInjection.dll",
       "Source": null,
       "Destination": null,
@@ -173,7 +159,7 @@
       "Overwrite": true
     },
     {
-      "Name": "Microsoft.Extensions.Logging.Abstractions.dll",
+      "Name": "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
@@ -181,6 +167,13 @@
     },
     {
       "Name": "Microsoft.Extensions.Logging.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true,
+      "Overwrite": true
+    },
+    {
+      "Name": "Microsoft.Extensions.Logging.Abstractions.dll",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
@@ -215,7 +208,7 @@
       "Overwrite": true
     },
     {
-      "Name": "SharpKml.Core.dll",
+      "Name": "Syncfusion.Compression.Base.dll",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
@@ -229,10 +222,52 @@
       "Overwrite": true
     },
     {
+      "Name": "Syncfusion.Pdf.Base.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true,
+      "Overwrite": true
+    },
+    {
+      "Name": "Syncfusion.PdfToImageConverter.Base.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true,
+      "Overwrite": true
+    },
+    {
+      "Name": "Syncfusion.PdfViewer.Windows.dll",
+      "Source": null,
+      "Destination": null,
+      "UpdateMethodVersion": true,
+      "Overwrite": true
+    },
+    {
       "Name": "Syncfusion.Shared.Base.dll",
       "Source": null,
       "Destination": null,
       "UpdateMethodVersion": true,
+      "Overwrite": true
+    },
+    {
+      "Name": "Appearance.json",
+      "Source": ".\\config",
+      "Destination": ".\\config",
+      "UpdateMethodVersion": false,
+      "Overwrite": true
+    },
+    {
+      "Name": "Database.json",
+      "Source": ".\\config",
+      "Destination": ".\\config",
+      "UpdateMethodVersion": false,
+      "Overwrite": true
+    },
+    {
+      "Name": "General.json",
+      "Source": ".\\config",
+      "Destination": ".\\config",
+      "UpdateMethodVersion": false,
       "Overwrite": true
     },
     {
