@@ -15,7 +15,7 @@ namespace CSAppUpdater
             InitializeComponent();
 
             this.Icon = Properties.Resources.IconApplication;
-            this.Text = Program.ApplicationTitle;
+            this.Text = Program.Info.Title;
         }
 
         private void This_Shown(object sender, EventArgs e)
@@ -152,7 +152,7 @@ namespace CSAppUpdater
             if (!Path.Exists(configFilename))
             {
                 ShowStatusText("", "ERROR", false, true);
-                MessageBox.Show($"El archivo de configuración ({configFilename}) no existe.", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"El archivo de configuración ({configFilename}) no existe.", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -165,7 +165,7 @@ namespace CSAppUpdater
             catch (Exception ex)
             {
                 ShowStatusText("", "ERROR", false, true);
-                MessageBox.Show($"Ha ocurrido un error al leer el archivo de configuración ({configFilename})\n\nError: {ex.Message}", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ha ocurrido un error al leer el archivo de configuración ({configFilename})\n\nError: {ex.Message}", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             try
@@ -177,7 +177,7 @@ namespace CSAppUpdater
             catch (Exception ex)
             {
                 ShowStatusText("", "ERROR", false, true);
-                MessageBox.Show($"Ha ocurrido un error al interpretar el archivo de configuración ({configFilename})\n\nError: {ex.Message}", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ha ocurrido un error al interpretar el archivo de configuración ({configFilename})\n\nError: {ex.Message}", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -287,7 +287,7 @@ namespace CSAppUpdater
             catch (Exception ex)
             {
                 ShowStatusText("", "ERROR", false, true);
-                MessageBox.Show($"Ha ocurrido un error al verificar si existe el archivo de {leyenda} ({fileName})\n\nError: {ex.Message}", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ha ocurrido un error al verificar si existe el archivo de {leyenda} ({fileName})\n\nError: {ex.Message}", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -305,7 +305,7 @@ namespace CSAppUpdater
             catch (Exception ex)
             {
                 ShowStatusText("", "Verificando y creando carpeta de destino...ERROR", true, true);
-                MessageBox.Show($"Ha ocurrido un error al verificar y crear la carpeta de destino ({folder})\n\nError: {ex.Message}", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ha ocurrido un error al verificar y crear la carpeta de destino ({folder})\n\nError: {ex.Message}", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -324,7 +324,7 @@ namespace CSAppUpdater
             catch (Exception ex)
             {
                 ShowStatusText("", "ERROR", false, true);
-                MessageBox.Show($"Ha ocurrido un error al obtener la versión de los archivos ({fileName})\n\nError: {ex.Message}", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ha ocurrido un error al obtener la versión de los archivos ({fileName})\n\nError: {ex.Message}", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -354,7 +354,7 @@ namespace CSAppUpdater
             catch (Exception ex)
             {
                 ShowStatusText("", "ERROR", false, true);
-                MessageBox.Show($"Ha ocurrido un error al obtener la información de los archivos ({fileName})\n\nError: {ex.Message}", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ha ocurrido un error al obtener la información de los archivos ({fileName})\n\nError: {ex.Message}", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -381,7 +381,7 @@ namespace CSAppUpdater
             catch (Exception ex)
             {
                 ShowStatusText("", "ERROR", false, true);
-                MessageBox.Show($"Ha ocurrido un error al copiar el archivo ({fileName})\n\nError: {ex.Message}", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ha ocurrido un error al copiar el archivo ({fileName})\n\nError: {ex.Message}", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -472,7 +472,7 @@ namespace CSAppUpdater
                 catch (System.Exception ex)
                 {
                     ShowStatusText("", "ERROR", false, true);
-                    MessageBox.Show($"Error al iniciar el archivo ({executeFilePath}).\n\nError: {ex.Message}", Program.ApplicationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error al iniciar el archivo ({executeFilePath}).\n\nError: {ex.Message}", Program.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
